@@ -7,16 +7,16 @@ void up_btn_evt_cb(void *arg)
     flex_button_t *btn = (flex_button_t *)arg;
     switch (btn->event) {
 
-        case FLEX_BTN_PRESS_CLICK:                //µ¥»ú
+        case FLEX_BTN_PRESS_CLICK:                //å•æœº
           break;
 				
-        case FLEX_BTN_PRESS_DOUBLE_CLICK:         //Ë«»÷
+        case FLEX_BTN_PRESS_DOUBLE_CLICK:         //åŒå‡»
 			    break;
 				
-        case FLEX_BTN_PRESS_LONG_HOLD_UP:         //³¤°´±£³ÖºóÌ§ÆðÊÂ¼þ 
+        case FLEX_BTN_PRESS_LONG_HOLD_UP:         //é•¿æŒ‰ä¿æŒåŽæŠ¬èµ·äº‹ä»¶ 
           break;
 				
-				case FLEX_BTN_PRESS_LONG_HOLD:            //³¤°´±£³ÖÊ±¼ä
+				case FLEX_BTN_PRESS_LONG_HOLD:            //é•¿æŒ‰ä¿æŒæ—¶é—´
 					break;
 				
         default:
@@ -24,7 +24,7 @@ void up_btn_evt_cb(void *arg)
            
     }
 }
-//ÍØÕ¹°´¼ü»Øµ÷
+//æ‹“å±•æŒ‰é”®å›žè°ƒ
 void down_btn_evt_cb(void *arg)
 {
 	   

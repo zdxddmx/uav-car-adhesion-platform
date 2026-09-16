@@ -51,7 +51,7 @@ void Upper_Computer_Show_Wave(void)
 			{
 					continue;
 			}
-			// ·¢ËÍµ¥¸ö×Ö½Ú
+			// å‘é€å•ä¸ªå­—èŠ‚
 			HAL_UART_Transmit(&huart2, &data_to_send[i], 1, 50);
 		 }
 		 

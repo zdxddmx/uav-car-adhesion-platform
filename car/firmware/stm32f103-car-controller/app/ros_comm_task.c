@@ -15,7 +15,7 @@ extern volatile uint8_t ps2_active;
 #define ROS_COMM_RX_POLL_MS       20U
 #define ROS_CONTROL_TIMEOUT_MS   300U
 
-extern imu_raw_data_t g_imu_raw_data;   // IMU 鍘熷鏁版嵁缁撴瀯
+extern imu_raw_data_t g_imu_raw_data;   // IMU 原始数据结构
 extern Chassis_TypeDef chassis;         // 搴曠洏杩愬姩缁撴瀯浣?
 
 trans_data_t send_data;
@@ -95,7 +95,7 @@ static void data_transition(void){
     send_data.sensor_str.y_speed = (short)(chassis.cur_vy*1000/0.8/1.2);
     send_data.sensor_str.z_speed = (short)(chassis.cur_vz*1000/0.8/1.2);
 
-    // 鍔犻€熷害
+    // 加速度
     send_data.sensor_str.imu_acc_x = g_imu_raw_data.accel[1]*8;    // IMU +y 瀵瑰簲 ROS 鍧愭爣绯?+x 鍓嶆柟
     send_data.sensor_str.imu_acc_y = -g_imu_raw_data.accel[0]*8;   // IMU -x 瀵瑰簲 ROS 鍧愭爣绯?+y 宸︽柟
     send_data.sensor_str.imu_acc_z = g_imu_raw_data.accel[2]*8;
@@ -153,8 +153,8 @@ static void data_transition(void){
 // ROS 鎸囦护绫诲瀷鏋氫妇
 enum{
     ROS_CMD_TYPE_CONTROL = 0,   // 鎺у埗鎸囦护
-    ROS_CMD_TYPE_RECHARGE1,     // 鍏呯數鎸囦护1
-    ROS_CMD_TYPE_RECHARGE2,     // 鍏呯數鎸囦护2
+    ROS_CMD_TYPE_RECHARGE1,     // 充电指令1
+    ROS_CMD_TYPE_RECHARGE2,     // 充电指令2
     ROS_CMD_TYPE_INFRFRED,      // 绾㈠鎸囦护
     ROS_CMD_TYPE_IP = 0xFF,     // IP 鎸囦护
 };
@@ -206,7 +206,7 @@ static void ros_comm_recv_proc(void){
             }
             break;
         default:
-            // 鍏朵粬鎸囦护鏆備笉澶勭悊
+            // 其他指令暂不处理
             break;
     }
 }
@@ -216,7 +216,7 @@ static void ros_comm_recv_proc(void){
  */
 static void ros_comm_init(void){
     s_ros_uart_idle_sem = xSemaphoreCreateBinary();
-    // 璁剧疆涓插彛 + DMA + IDLE 鎺ユ敹娴佺▼
+    // 设置串口 + DMA + IDLE 接收流程
     __HAL_UART_ENABLE_IT(&huart4, UART_IT_IDLE); // 鎵嬪姩浣胯兘绌洪棽涓柇
     _uart_recv_func(recv_data.buffer, RECEIVE_SIZE);
 }
@@ -244,7 +244,7 @@ void ros_comm_task(void const *argument){
 			s_control_received = 0U;
 		}
 		
-// 		// 娴嬭瘯鍙戦€佸抚
+// 		// 测试发送帧
 //		uint8_t temp_buf[24] = {0x7B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x96, 0xFF, 0x38, 0x40, 0x00, 0xFF, 0xF6, 0x00, 0x05, 0xFF, 0xFE, 0x2E, 0xE0, 0xA9, 0x7D};
 //        _uart_trans_func(temp_buf, TRANSMIT_SIZE);
 //		osDelay(50);

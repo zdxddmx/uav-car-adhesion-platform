@@ -7,9 +7,9 @@
 
 #define LED_ON()   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET)
 #define LED_OFF()  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_RESET)
-// 底盘几何参数
-#define WHEEL_BASE_SUM    0.168f   // L+W = 边长 = 0.2 m
-#define MAX_WHEEL_SPEED   1.08f   // 轮子最大线速度 1 m/s
+// 搴曠洏鍑犱綍鍙傛暟
+#define WHEEL_BASE_SUM    0.168f   // L+W = 杈归暱 = 0.2 m
+#define MAX_WHEEL_SPEED   1.08f   // 杞瓙鏈�澶х嚎閫熷害 1 m/s
 extern float a;
 extern float b;
 extern float c;

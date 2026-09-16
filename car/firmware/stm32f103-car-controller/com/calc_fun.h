@@ -9,7 +9,7 @@ extern int abs_int(int num);
 extern int16_t com_filter_lowpass(int16_t newData, int16_t lastData);
 void ShortToChar(short sData, unsigned char cData[]);
 
-// 辅助函数：字节数组转 short（小端）
+// 杈呭姪鍑芥暟锛氬瓧鑺傛暟缁勮浆 short锛堝皬绔級
 short CharToShort(unsigned char cData[]);
 
 

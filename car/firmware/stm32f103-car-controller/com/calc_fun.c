@@ -3,29 +3,29 @@
 int abs_int(int num)
 {
     if (num < 0)
-        return -num;  // ¸ºÊıÈ¡·´
+        return -num;  // è´Ÿæ•°å–å
     else
-        return num;   // ÕıÊıÖ±½Ó·µ»Ø
+        return num;   // æ­£æ•°ç›´æ¥è¿”å›
 }
 
 /**
-  * º¯    Êı£ºÒ»½×µÍÍ¨ÂË²¨º¯Êı
-  * ²Î    Êı£ºÎŞ
-  * ·µ »Ø Öµ£ºÎŞ
+  * å‡½    æ•°ï¼šä¸€é˜¶ä½é€šæ»¤æ³¢å‡½æ•°
+  * å‚    æ•°ï¼šæ— 
+  * è¿” å› å€¼ï¼šæ— 
   */
 int16_t com_filter_lowpass(int16_t newData, int16_t lastData)
 {
     return ALPHA * lastData + (1 - ALPHA) * newData;
 }
 
-// ¸¨Öúº¯Êı£ºshort ×ª×Ö½ÚÊı×é£¨Ğ¡¶Ë£©
+// è¾…åŠ©å‡½æ•°ï¼šshort è½¬å­—èŠ‚æ•°ç»„ï¼ˆå°ç«¯ï¼‰
 void ShortToChar(short sData, unsigned char cData[])
 {
     cData[0] = sData & 0xff;
     cData[1] = sData >> 8;
 }
 
-// ¸¨Öúº¯Êı£º×Ö½ÚÊı×é×ª short£¨Ğ¡¶Ë£©
+// è¾…åŠ©å‡½æ•°ï¼šå­—èŠ‚æ•°ç»„è½¬ shortï¼ˆå°ç«¯ï¼‰
 short CharToShort(unsigned char cData[])
 {
     return ((short)cData[1] << 8) | cData[0];

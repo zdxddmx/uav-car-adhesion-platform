@@ -3,7 +3,7 @@
 
 #include "bsp_key.h"
 #include "app_key.h"
-//定义用户按键
+//瀹氫箟鐢ㄦ埛鎸夐敭
 typedef enum
 {
     BUTTON_UP = 0,

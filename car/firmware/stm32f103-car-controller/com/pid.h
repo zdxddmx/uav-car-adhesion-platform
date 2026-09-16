@@ -3,29 +3,29 @@
 
 #include <stdint.h>
 
-/** ÔöÁ¿ËÙ¶È»·£º|target|¡¢|actual| ¾ùĞ¡ÓÚ¸ÃÖµ(m/s)Ê±ÇåÁã PWM£¬¿É¸Ä´óÂÔ·Å¿íÍ£ÎÈÅĞ¾İ */
+/** å¢é‡é€Ÿåº¦ç¯ï¼š|target|ã€|actual| å‡å°äºè¯¥å€¼(m/s)æ—¶æ¸…é›¶ PWMï¼Œå¯æ”¹å¤§ç•¥æ”¾å®½åœç¨³åˆ¤æ® */
 #ifndef PID_INC_VEL_DEADBAND_MS
 #define PID_INC_VEL_DEADBAND_MS  (0.04f)
 #endif
 
-// PID ½á¹¹Ìå
+// PID ç»“æ„ä½“
 typedef struct {
-    float target;   // Ä¿±êÖµ
-    float actual;   // µ±Ç°Öµ
-    float err;      // µ±Ç°Îó²î
-    float last_err; // ÉÏÒ»´ÎÎó²î
-    float prev_err; // ÉÏÉÏ´ÎÎó²î£¨ÔöÁ¿Ê½×¨ÓÃ£©
+    float target;   // ç›®æ ‡å€¼
+    float actual;   // å½“å‰å€¼
+    float err;      // å½“å‰è¯¯å·®
+    float last_err; // ä¸Šä¸€æ¬¡è¯¯å·®
+    float prev_err; // ä¸Šä¸Šæ¬¡è¯¯å·®ï¼ˆå¢é‡å¼ä¸“ç”¨ï¼‰
 
     float Kp;
     float Ki;
     float Kd;
 
-    float out;      // Êä³ö
-    float max_out;  // ×î´óÊä³ö
-    float integral; // »ı·ÖÀÛ¼Ó
+    float out;      // è¾“å‡º
+    float max_out;  // æœ€å¤§è¾“å‡º
+    float integral; // ç§¯åˆ†ç´¯åŠ 
 } pid_typedef;
 
-// º¯ÊıÉùÃ÷
+// å‡½æ•°å£°æ˜
 void pid_init(pid_typedef *pid, float kp, float ki, float kd, float max_out);
 float pid_calc(pid_typedef *pid);
 float pid_calc_inc(pid_typedef *pid);

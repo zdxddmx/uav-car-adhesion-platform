@@ -7,33 +7,33 @@
 #include "pid.h"
 typedef struct
 {
-    int16_t speed;         // ×îÖÕÊä³öÖµ
-	  int16_t target_speed;  //Ä¿±êËÙ¶È
+    int16_t speed;         // æœ€ç»ˆè¾“å‡ºå€¼
+	  int16_t target_speed;  //ç›®æ ‡é€Ÿåº¦
 
 } Motor_TypeDef;
-// 1. ¶¨Òåµ×ÅÌËÄÖÖ¹¤×÷Ä£Ê½
+// 1. å®šä¹‰åº•ç›˜å››ç§å·¥ä½œæ¨¡å¼
 typedef enum {
-    CHASSIS_MODE_STOP = 0,        // Í£Ö¹
-    CHASSIS_MODE_ONLY_FORWARD,    // ´¿Ç°½øºóÍË
-    CHASSIS_MODE_FORWARD_TURN,    // Ç°½ø/ºóÍË + ×ªÏò²îËÙ×ªÏò
-    CHASSIS_MODE_ROTATE,          // Ô­µØĞı×ª    
+    CHASSIS_MODE_STOP = 0,        // åœæ­¢
+    CHASSIS_MODE_ONLY_FORWARD,    // çº¯å‰è¿›åé€€
+    CHASSIS_MODE_FORWARD_TURN,    // å‰è¿›/åé€€ + è½¬å‘å·®é€Ÿè½¬å‘
+    CHASSIS_MODE_ROTATE,          // åŸåœ°æ—‹è½¬    
 }chassis_mode_typedef;
 
-// 2. µ×ÅÌ¿ØÖÆ½á¹¹Ìå£¨°üº¬Ä£Ê½ + ËùÓĞ¿ØÖÆÁ¿£©
+// 2. åº•ç›˜æ§åˆ¶ç»“æ„ä½“ï¼ˆåŒ…å«æ¨¡å¼ + æ‰€æœ‰æ§åˆ¶é‡ï¼‰
 typedef struct {
-   chassis_mode_typedef mode;                      // µ±Ç°µ×ÅÌÄ£Ê½
-   pid_typedef motor1_pid[4];                      //ËÄ¸öµç»úpid½á¹¹Ìå
-   Motor_TypeDef motor[4];                         //µç»ú²ÎÊı½á¹¹Ìå
-	 float vx;                               // x·½ÏòËÙ¶È (m/s)
-	 float vy;                               // y·½ÏòËÙ¶È (m/s)
-	 float vz;                               // z·½ÏòËÙ¶È 
+   chassis_mode_typedef mode;                      // å½“å‰åº•ç›˜æ¨¡å¼
+   pid_typedef motor1_pid[4];                      //å››ä¸ªç”µæœºpidç»“æ„ä½“
+   Motor_TypeDef motor[4];                         //ç”µæœºå‚æ•°ç»“æ„ä½“
+	 float vx;                               // xæ–¹å‘é€Ÿåº¦ (m/s)
+	 float vy;                               // yæ–¹å‘é€Ÿåº¦ (m/s)
+	 float vz;                               // zæ–¹å‘é€Ÿåº¦ 
 	
-	float cur_vx;		// µ±Ç°x·½ÏòµÄÊµ¼ÊËÙ¶È(m/s)
-	float cur_vy;		// µ±Ç°y·½ÏòµÄÊµ¼ÊËÙ¶È(m/s)
-	float cur_vz;		// µ±Ç°z·½ÏòµÄÊµ¼ÊËÙ¶È(m/s)
+	float cur_vx;		// å½“å‰xæ–¹å‘çš„å®é™…é€Ÿåº¦(m/s)
+	float cur_vy;		// å½“å‰yæ–¹å‘çš„å®é™…é€Ÿåº¦(m/s)
+	float cur_vz;		// å½“å‰zæ–¹å‘çš„å®é™…é€Ÿåº¦(m/s)
 } Chassis_TypeDef;
 
-// È«¾Öµ×ÅÌ½á¹¹Ìå
+// å…¨å±€åº•ç›˜ç»“æ„ä½“
 extern Chassis_TypeDef chassis;
 
 #endif

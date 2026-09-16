@@ -3,7 +3,7 @@
 #include "bsp_iic.h"           
 #include "com_debug.h"
 
-// ¶¨ÒåÈ«¾Ö±äÁ¿£¨·Ç¾²Ì¬£©
+// å®šä¹‰å…¨å±€å˜é‡ï¼ˆéé™æ€ï¼‰
 imu_data_t g_imu_data;
 imu_raw_data_t g_imu_raw_data;
 //imu_raw_data_t g_imu_raw_err;
@@ -51,7 +51,7 @@ void imu_update(void) {
         return;
     }
 
-    // ¸³ÖµÔ­Ê¼Êı¾İ£¨ÒÔ¹©´®¿ÚÉÏ´«µ½ROS£©
+    // èµ‹å€¼åŸå§‹æ•°æ®ï¼ˆä»¥ä¾›ä¸²å£ä¸Šä¼ åˆ°ROSï¼‰
     g_imu_raw_data.accel[0] = CharToShort(&chrTemp[0 + 8]);
     g_imu_raw_data.accel[1] = CharToShort(&chrTemp[2 + 8]);
     g_imu_raw_data.accel[2] = CharToShort(&chrTemp[4 + 8]);
@@ -60,7 +60,7 @@ void imu_update(void) {
     g_imu_raw_data.gyro[1] = CharToShort(&chrTemp[8 + 8]);
     g_imu_raw_data.gyro[2] = CharToShort(&chrTemp[10 + 8]);
 
-    // Ö±½ÓÌî³äÈ«¾Ö±äÁ¿
+    // ç›´æ¥å¡«å……å…¨å±€å˜é‡
     g_imu_data.accel[0] = (float)g_imu_raw_data.accel[0] / 32768.0f * 16.0f;
     g_imu_data.accel[1] = (float)g_imu_raw_data.accel[1] / 32768.0f * 16.0f;
     g_imu_data.accel[2] = (float)g_imu_raw_data.accel[2] / 32768.0f * 16.0f;
